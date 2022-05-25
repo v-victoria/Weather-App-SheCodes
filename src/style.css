@@ -35,6 +35,12 @@ span {
     inset -3px -3px 5px 0 rgb(1 30 111 / 13%), 0 0 8px 1px rgb(1 30 111 / 25%);
   border-radius: 15px;
 }
+.open-source-code-link {
+  width: 88vmin;
+  margin: 1vmin auto;
+  font-size: 1.7vmin;
+  font-family: "Source Sans Pro", Tahoma;
+}
 
 .line {
   display: flex;
