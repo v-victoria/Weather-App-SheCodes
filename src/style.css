@@ -1,0 +1,184 @@
+button {
+  position: relative;
+  top: -4.8vmin;
+  left: 34vmin;
+  padding: 0 0 0 0.5vmin;
+  font-size: 3em;
+  /* color: #001d6e; */
+  color: #323643;
+  background: none;
+  border: none;
+}
+button:hover {
+  color: #7fb5ff;
+}
+
+hr {
+  margin: 0;
+}
+
+span {
+  padding: 0 0 0 0.5vmin;
+}
+
+.main-background {
+  width: 88vmin;
+  height: 68vmin;
+  margin: 1vmin auto;
+  font-size: 0.95vmin;
+  font-family: "Source Sans Pro", Tahoma;
+  /* color: #001d6e;
+  background: linear-gradient(to bottom, rgb(30 109 217), rgb(219 233 255)); */
+  color: #323643;
+  background: linear-gradient(180deg, #c9cbcc 0%, #bbdceb 67.19%, #a8d6ea 100%);
+  box-shadow: inset 3px 3px 5px 0 rgb(255 255 255 / 25%),
+    inset -3px -3px 5px 0 rgb(1 30 111 / 13%), 0 0 8px 1px rgb(1 30 111 / 25%);
+  border-radius: 15px;
+}
+
+.line {
+  display: flex;
+}
+
+/* Location Row */
+.current-location-row {
+  height: 9vmin;
+  font-size: 3.7em;
+  /* color: #e4e4e4; */
+  /* background: #001d6e; */
+  color: #93deff;
+  background: #323643;
+  border-radius: 15px 15px 0 0;
+}
+
+.current-location-icon {
+  padding: 3.2vmin 0 0 4vmin;
+}
+.current-location-text {
+  padding: 0 0 1vmin 1vmin;
+  align-self: end;
+  line-height: 3.5vmin;
+}
+.time {
+  padding: 0 0 0.2vmin 2.5vmin;
+  align-self: end;
+}
+
+/* Current Weather Row */
+.current-weather-row {
+  height: 25vmin;
+  margin: 3vmin 2vmin 2vmin 2vmin;
+  font-size: 3.4em;
+}
+
+.current-weather-col {
+  margin: 1vmin;
+  font-weight: 600;
+}
+.sky {
+  margin-left: 2vmin;
+}
+
+.tempeture {
+  max-width: fit-content;
+  font-size: 6em;
+  line-height: 1em;
+}
+.degree {
+  max-width: fit-content;
+  margin-top: 2vmin;
+  font-size: 1.7em;
+}
+
+.not-select-degree {
+  color: #7f7e7e;
+  text-decoration: none;
+}
+.not-select-degree:hover {
+  cursor: pointer;
+  /* color: #001d6e; */
+  color: #323643;
+}
+
+.select-degree {
+  /* color: #001d6e; */
+  color: #323643;
+  text-decoration: none;
+}
+.select-degree:hover {
+  /* color: #001d6e; */
+  color: #323643;
+}
+
+.current-weather-details-top {
+  padding-left: 2vmin;
+}
+.current-weather-details-bottom {
+  padding: 3.5vmin 0 0 2vmin;
+}
+
+.current-weather-img {
+  display: block;
+  position: relative;
+  top: -0.8vmin;
+  max-height: 25vmin;
+  margin: 0 auto;
+}
+
+/* Dayly Forecast Row */
+.dayly-forecast-row {
+  height: 18vmin;
+  margin: 0 1vmin;
+  font-size: 3.5em;
+}
+
+.week-day {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-align: center;
+}
+.week-temperature {
+  display: block;
+  font-weight: 900;
+  text-align: center;
+}
+.week-weather-img {
+  height: 8vmin;
+  margin: 0 auto;
+}
+
+/* Search Row */
+.search-row {
+  margin: 1vmin auto;
+}
+
+.city-example-col {
+  padding-top: 1.8vmin;
+  font-size: 2.8em;
+  text-align: center;
+}
+.city-example {
+  padding: 0 1.8vmin;
+}
+.city-example:hover {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-input {
+  width: 39vmin;
+  height: 5.5vmin;
+  margin-top: 1vmin;
+  padding: 0 6vmin 0 3vmin;
+  font-size: 2.6em;
+  text-align: center;
+  /* color: #001d6e; */
+  color: #323643;
+  background: rgba(255, 255, 255, 0.6);
+  /* border: 1px #001d6e solid; */
+  border: 1px #323643 solid;
+  border-radius: 3vmin;
+}
+
+/* Free to use animated SVG weather icons. Handcrafted by [Bas Milius](https://bas.dev). */
