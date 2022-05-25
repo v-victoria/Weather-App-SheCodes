@@ -54,7 +54,7 @@ function findCity(response) {
 }
 
 function GetCoordinatesByLocationName(city) {
-  let apiCallGetCoordinatesByLocationName = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  let apiCallGetCoordinatesByLocationName = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
   axios.get(apiCallGetCoordinatesByLocationName).then(findCity);
 }
@@ -228,7 +228,7 @@ function currentPosition(position) {
 
   let units = metricOrImperialUnits();
   let apiUrlCurrentWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=${units}`;
-  let apiUrlCurrentLocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`;
+  let apiUrlCurrentLocation = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`;
 
   axios.get(apiUrlCurrentWeather).then(updateWeather);
   axios.get(apiUrlCurrentLocation).then(displayCity);
@@ -241,7 +241,7 @@ let currentTimeElem = document.querySelector(".time");
 let citySearchForm = document.querySelector("#search-form");
 let celsiusElem = document.querySelector("#celsius");
 let fahrenheitElem = document.querySelector("#fahrenheit");
-let apiCallDefault = `http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=${apiKey}`;
+let apiCallDefault = `https://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=${apiKey}`;
 let cityExamplesList = document.querySelectorAll(".city-example");
 
 axios.get(apiCallDefault).then(findCity);
