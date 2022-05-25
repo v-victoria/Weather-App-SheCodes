@@ -1,23 +1,27 @@
-function currentTime() {
-  let date = new Date();
-  let minutes = date.getMinutes();
+function currentTime(response) {
+  let currentLocationDate = new Date();
+  let minutes = currentLocationDate.getUTCMinutes();
+  let hours =
+    currentLocationDate.getUTCHours() + response.data.timezone_offset / 3600;
+
+  if (hours < 0) {
+    hours = 24 + hours;
+  }
+  if (hours > 24) {
+    hours = hours - 24;
+  }
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  let returnString = `${date.getHours()}:${minutes}`;
+  let returnString = `${hours}:${minutes}`;
+
   return returnString;
-}
-
-function metricOrImperialUnits() {
-  let fahrenheitElem = document.querySelector("#fahrenheit");
-
-  if (fahrenheitElem.className === "select-degree") {
-    return "imperial";
-  } else {
-    return "metric";
-  }
 }
 
 function displayCity(response) {
@@ -39,8 +43,7 @@ function findCity(response) {
     let citySearchStringForm = document.querySelector(".search-input");
     let lat = response.data[0].lat;
     let lon = response.data[0].lon;
-    let units = metricOrImperialUnits();
-    let apiUrlCurrentWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=${units}`;
+    let apiUrlCurrentWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrlCurrentWeather).then(updateWeather);
 
@@ -78,11 +81,7 @@ function getExampleCity(event) {
 }
 
 function celsiusToFahrenheit(value) {
-  return Math.round((value * 9) / 5 + 32);
-}
-
-function fahrenheitToCelsius(value) {
-  return Math.round(((value - 32) * 5) / 9);
+  return (value * 9) / 5 + 32;
 }
 
 function switchClasses() {
@@ -96,135 +95,115 @@ function switchClasses() {
     celsiusElem.className = "select-degree";
     fahrenheitElem.className = "not-select-degree";
   }
-}
-
-function switchingDeegres(event) {
-  if (event.target.className === "not-select-degree") {
-    let tempetureElemList = document.querySelectorAll(".temp-value");
-    let windElem = document.querySelector("#wind");
-    let wind = windElem.innerHTML.slice(0, -5);
-
-    if (event.target.innerHTML === "℉") {
-      for (let i = 0; i < tempetureElemList.length; i++) {
-        tempetureElemList[i].innerHTML = celsiusToFahrenheit(
-          tempetureElemList[i].innerHTML
-        );
-      }
-      wind = wind / 1.6;
-      wind = windLenghtCheck(wind);
-      windElem.innerHTML = `${wind} mi/h`;
-    } else {
-      for (let i = 0; i < tempetureElemList.length; i++) {
-        tempetureElemList[i].innerHTML = fahrenheitToCelsius(
-          tempetureElemList[i].innerHTML
-        );
-      }
-      wind = wind * 1.6;
-      wind = windLenghtCheck(wind);
-      windElem.innerHTML = `${wind} km/h`;
-    }
-
-    switchClasses();
-  }
-}
-
-function updateCurrentTempDescriptionImg(response) {
-  let temperature = Math.round(response.data.current.temp);
-  let tempetureElem = document.querySelector(".tempeture");
-  let description = response.data.current.weather[0].description;
-  let descriptionElem = document.querySelector(".description");
-  let currentWeatherImgNumber = response.data.current.weather[0].icon;
-  let currentWeatherImgElem = document.querySelector(".current-weather-img");
-
-  tempetureElem.innerHTML = temperature;
-  descriptionElem.innerHTML = description;
-  currentWeatherImgElem.setAttribute(
-    "src",
-    `svg/${currentWeatherImgNumber}.svg`
-  );
-}
-
-function updateDayNightTemp(response) {
-  let dayTempeture = Math.round(response.data.daily[0].temp.day);
-  let dayTempetureElem = document.querySelector(".day-temp");
-
-  let nightTempeture = Math.round(response.data.daily[0].temp.night);
-  let nightTempetureElem = document.querySelector(".night-temp");
-
-  dayTempetureElem.innerHTML = dayTempeture;
-  nightTempetureElem.innerHTML = nightTempeture;
+  updateChangingElements();
 }
 
 function windLenghtCheck(wind) {
   wind = wind.toFixed(1);
+  if (wind.length > 3) {
+    wind = Math.round(wind);
+  }
+
   return wind;
 }
 
-function updateHumidityWind(response) {
-  let humidity = Math.round(response.data.current.humidity);
-  let humidityElem = document.querySelector(".humidity");
-
-  let wind = response.data.current.wind_speed;
-  let windElem = document.querySelector("#wind");
-
-  let fahrenheitElem = document.querySelector("#fahrenheit");
-
-  humidityElem.innerHTML = humidity;
-
-  if (fahrenheitElem.className === "select-degree") {
-    wind = windLenghtCheck(wind);
-    windElem.innerHTML = `${wind} mi/h`;
-  } else {
-    wind = wind * 3.6;
-    wind = windLenghtCheck(wind);
-    windElem.innerHTML = `${wind} km/h`;
-  }
+function getCurrentDayData(response) {
+  currentDayData = {
+    temperatureCelsius: Math.round(response.data.current.temp),
+    temperatureFahrenheit: Math.round(
+      celsiusToFahrenheit(response.data.current.temp)
+    ),
+    description: response.data.current.weather[0].description,
+    dayTemperatureCelsius: Math.round(response.data.daily[0].temp.day),
+    dayTemperatureFahrenheit: Math.round(
+      celsiusToFahrenheit(response.data.daily[0].temp.day)
+    ),
+    nightTemperatureCelsius: Math.round(response.data.daily[0].temp.night),
+    nightTemperatureFahrenheit: Math.round(
+      celsiusToFahrenheit(response.data.daily[0].temp.night)
+    ),
+    humidity: Math.round(response.data.current.humidity),
+    windMetric: `${windLenghtCheck(
+      response.data.current.wind_speed * 3.6
+    )} km/h`,
+    windImperial: `${windLenghtCheck(
+      response.data.current.wind_speed * 2.3
+    )} mi/h`,
+    currentWeatherImgNumber: response.data.current.weather[0].icon,
+  };
 }
 
-function updateWeather(response) {
-  console.log(response);
-  updateCurrentTempDescriptionImg(response);
-  updateDayNightTemp(response);
-  updateHumidityWind(response);
-  updateWeatherForecast(response);
+function getCurrentDayDataList() {
+  currentDayDataList = {
+    temperatureElem: document.querySelector(".tempeture"),
+    descriptionElem: document.querySelector(".description"),
+    dayTemperatureElem: document.querySelector(".day-temp"),
+    nightTemperatureElem: document.querySelector(".night-temp"),
+    humidityElem: document.querySelector(".humidity"),
+    windElem: document.querySelector("#wind"),
+    currentWeatherImgElem: document.querySelector(".current-weather-img"),
+  };
 }
 
 function getDailyForecastList(response) {
-  let dailyForecastList = [];
+  let weekDays = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
+  let dayOfWeek = new Date();
+
+  let hours = dayOfWeek.getUTCHours() + response.data.timezone_offset / 3600;
+
+  if (hours < 0) {
+    dayOfWeek = new Date(dayOfWeek.setDate(dayOfWeek.getDate() - 1));
+  }
+  if (hours > 24) {
+    dayOfWeek = new Date(dayOfWeek.setDate(dayOfWeek.getDate() + 1));
+  }
+
   for (let i = 0; i < 5; i++) {
+    dayOfWeek = new Date(dayOfWeek.setDate(dayOfWeek.getDate() + 1));
+
+    let date = dayOfWeek.getDate();
+
+    if (date < 10) {
+      date = "0" + date;
+    }
+
     dailyForecastList[i] = {
-      date: "0",
-      dayTemp: Math.round(response.data.daily[i + 1].temp.day),
-      nightTemp: Math.round(response.data.daily[i + 1].temp.night),
+      date: `${weekDays[dayOfWeek.getDay()]} ${date}`,
+      dayTempCelsius: Math.round(response.data.daily[i + 1].temp.day),
+      dayTempFahrenheit: Math.round(
+        celsiusToFahrenheit(response.data.daily[i + 1].temp.day)
+      ),
+      nightTempCelsius: Math.round(response.data.daily[i + 1].temp.night),
+      nightTempFahrenheit: Math.round(
+        celsiusToFahrenheit(response.data.daily[i + 1].temp.night)
+      ),
       description: response.data.daily[i + 1].weather[0].icon,
     };
   }
-  return dailyForecastList;
 }
 
 function getDailyForecastListElem() {
-  let dailyForecastListElem = [];
-
   for (let i = 0; i < 5; i++) {
     dailyForecastListElem[i] = {
-      dateElem: "0",
+      dateElem: document.querySelector(`#week-day-${i}`),
       dailyDayTempElem: document.querySelector(`#daily-day-temp-${i}`),
       dailyNightTempElem: document.querySelector(`#daily-night-temp-${i}`),
       descriptionImgElem: document.querySelector(`#week-weather-img-${i}`),
     };
   }
-  return dailyForecastListElem;
 }
 
-function updateWeatherForecast(response) {
-  let dailyForecastList = getDailyForecastList(response);
-  let dailyForecastListElem = getDailyForecastListElem();
+function updatePermanentElements() {
+  currentDayDataList.descriptionElem.innerHTML = currentDayData.description;
+  currentDayDataList.currentWeatherImgElem.setAttribute(
+    "src",
+    `svg/${currentDayData.currentWeatherImgNumber}.svg`
+  );
+
+  currentDayDataList.humidityElem.innerHTML = currentDayData.humidity;
 
   for (let i = 0; i < 5; i++) {
-    dailyForecastListElem[i].dailyDayTempElem.innerHTML =
-      dailyForecastList[i].dayTemp;
-    dailyForecastListElem[i].dailyNightTempElem.innerHTML =
-      dailyForecastList[i].nightTemp;
+    dailyForecastListElem[i].dateElem.innerHTML = dailyForecastList[i].date;
     dailyForecastListElem[i].descriptionImgElem.setAttribute(
       "src",
       `svg/${dailyForecastList[i].description}.svg`
@@ -232,12 +211,60 @@ function updateWeatherForecast(response) {
   }
 }
 
+function updateChangingElements() {
+  let fahrenheitElem = document.querySelector("#fahrenheit");
+
+  if (fahrenheitElem.className === "select-degree") {
+    currentDayDataList.temperatureElem.innerHTML =
+      currentDayData.temperatureFahrenheit;
+    currentDayDataList.dayTemperatureElem.innerHTML =
+      currentDayData.dayTemperatureFahrenheit;
+    currentDayDataList.nightTemperatureElem.innerHTML =
+      currentDayData.nightTemperatureFahrenheit;
+    currentDayDataList.windElem.innerHTML = currentDayData.windImperial;
+
+    for (let i = 0; i < 5; i++) {
+      dailyForecastListElem[i].dailyDayTempElem.innerHTML =
+        dailyForecastList[i].dayTempFahrenheit;
+      dailyForecastListElem[i].dailyNightTempElem.innerHTML =
+        dailyForecastList[i].nightTempFahrenheit;
+    }
+  } else {
+    currentDayDataList.temperatureElem.innerHTML =
+      currentDayData.temperatureCelsius;
+    currentDayDataList.dayTemperatureElem.innerHTML =
+      currentDayData.dayTemperatureCelsius;
+    currentDayDataList.nightTemperatureElem.innerHTML =
+      currentDayData.nightTemperatureCelsius;
+    currentDayDataList.windElem.innerHTML = currentDayData.windMetric;
+
+    for (let i = 0; i < 5; i++) {
+      dailyForecastListElem[i].dailyDayTempElem.innerHTML =
+        dailyForecastList[i].dayTempCelsius;
+      dailyForecastListElem[i].dailyNightTempElem.innerHTML =
+        dailyForecastList[i].nightTempCelsius;
+    }
+  }
+}
+
+function updateWeather(response) {
+  let currentTimeElem = document.querySelector(".time");
+  getCurrentDayDataList();
+  getCurrentDayData(response);
+  getDailyForecastListElem();
+  getDailyForecastList(response);
+
+  updatePermanentElements();
+  updateChangingElements();
+
+  currentTimeElem.innerHTML = currentTime(response);
+}
+
 function currentPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
 
-  let units = metricOrImperialUnits();
-  let apiUrlCurrentWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=${units}`;
+  let apiUrlCurrentWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
   let apiUrlCurrentLocation = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`;
 
   axios.get(apiUrlCurrentWeather).then(updateWeather);
@@ -245,26 +272,27 @@ function currentPosition(position) {
 }
 
 let apiKey = "294b1233d0859b30eceddba0fee44100";
-let days = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
 
-let currentTimeElem = document.querySelector(".time");
 let citySearchForm = document.querySelector("#search-form");
 let celsiusElem = document.querySelector("#celsius");
 let fahrenheitElem = document.querySelector("#fahrenheit");
 let apiCallDefault = `https://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=${apiKey}`;
 let cityExamplesList = document.querySelectorAll(".city-example");
 
-axios.get(apiCallDefault).then(findCity);
+let currentDayData = {};
+let currentDayDataList = {};
+let dailyForecastList = [];
+let dailyForecastListElem = [];
 
-currentTimeElem.innerHTML = currentTime();
+axios.get(apiCallDefault).then(findCity);
 
 citySearchForm.addEventListener("submit", getCity);
 cityExamplesList.forEach(function (cityExampleElement, index) {
   cityExampleElement.addEventListener("click", getExampleCity);
 });
 
-celsiusElem.addEventListener("click", switchingDeegres);
-fahrenheitElem.addEventListener("click", switchingDeegres);
+celsiusElem.addEventListener("click", switchClasses);
+fahrenheitElem.addEventListener("click", switchClasses);
 
 navigator.geolocation.getCurrentPosition(currentPosition);
 
