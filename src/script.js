@@ -128,14 +128,20 @@ function switchingDeegres(event) {
   }
 }
 
-function updateCurrentTempDescription(response) {
+function updateCurrentTempDescriptionImg(response) {
   let temperature = Math.round(response.data.current.temp);
   let tempetureElem = document.querySelector(".tempeture");
-  let description = response.data.current.weather[0].main;
-  let descriptionElem = document.querySelector(".sky");
+  let description = response.data.current.weather[0].description;
+  let descriptionElem = document.querySelector(".description");
+  let currentWeatherImgNumber = response.data.current.weather[0].icon;
+  let currentWeatherImgElem = document.querySelector(".current-weather-img");
 
   tempetureElem.innerHTML = temperature;
   descriptionElem.innerHTML = description;
+  currentWeatherImgElem.setAttribute(
+    "src",
+    `svg/${currentWeatherImgNumber}.svg`
+  );
 }
 
 function updateDayNightTemp(response) {
@@ -176,8 +182,8 @@ function updateHumidityWind(response) {
 }
 
 function updateWeather(response) {
-  // console.log(response);
-  updateCurrentTempDescription(response);
+  console.log(response);
+  updateCurrentTempDescriptionImg(response);
   updateDayNightTemp(response);
   updateHumidityWind(response);
   updateWeatherForecast(response);
@@ -190,7 +196,7 @@ function getDailyForecastList(response) {
       date: "0",
       dayTemp: Math.round(response.data.daily[i + 1].temp.day),
       nightTemp: Math.round(response.data.daily[i + 1].temp.night),
-      description: response.data.daily[i + 1].weather[0].main,
+      description: response.data.daily[i + 1].weather[0].icon,
     };
   }
   return dailyForecastList;
@@ -204,7 +210,7 @@ function getDailyForecastListElem() {
       dateElem: "0",
       dailyDayTempElem: document.querySelector(`#daily-day-temp-${i}`),
       dailyNightTempElem: document.querySelector(`#daily-night-temp-${i}`),
-      descriptionIconElem: "0",
+      descriptionImgElem: document.querySelector(`#week-weather-img-${i}`),
     };
   }
   return dailyForecastListElem;
@@ -219,6 +225,10 @@ function updateWeatherForecast(response) {
       dailyForecastList[i].dayTemp;
     dailyForecastListElem[i].dailyNightTempElem.innerHTML =
       dailyForecastList[i].nightTemp;
+    dailyForecastListElem[i].descriptionImgElem.setAttribute(
+      "src",
+      `svg/${dailyForecastList[i].description}.svg`
+    );
   }
 }
 

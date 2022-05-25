@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 73.1 78.2" style="enable-background:new 0 0 73.1 78.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);stroke:#72B9D5;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:url(#SVGID_2_);stroke:#E6EFFC;stroke-width:0.5;stroke-miterlimit:10;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="10.6195" y1="55.2078" x2="27.1152" y2="26.6485" gradientTransform="matrix(1 0 0 -1 0 66)">
+	<stop  offset="0" style="stop-color:#86C3DB"/>
+	<stop  offset="0.45" style="stop-color:#86C3DB"/>
+	<stop  offset="1" style="stop-color:#5EAFCF"/>
+</linearGradient>
+<path class="st0" d="M35.1,28.2c-9.1,0.1-16.6-7.3-16.7-16.4c0,0,0,0,0,0c0-1.4,0.2-2.8,0.5-4.1C9.9,8.8,3.5,17,4.6,26
+	S14,41.4,23,40.3c6.7-0.8,12.2-5.7,13.9-12.2C36.3,28.2,35.7,28.2,35.1,28.2z">
+<animateTransform  accumulate="none" additive="replace" attributeName="transform" calcMode="linear" dur="10s" fill="remove" repeatCount="indefinite" restart="always" type="rotate" values="-10 19.22 24.293; 10 19.22 24.293; -10 19.22 24.293">
+		</animateTransform>
+</path>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="24.5185" y1="1035.0494" x2="50.225" y2="1079.6033" gradientTransform="matrix(1 0 0 1 0 -1014)">
+	<stop  offset="0" style="stop-color:#F3F7FE"/>
+	<stop  offset="0.45" style="stop-color:#F3F7FE"/>
+	<stop  offset="1" style="stop-color:#DEEAFB"/>
+</linearGradient>
+<path class="st1" d="M61.4,35.8h-0.5C63,27.1,57.7,18.3,49,16.2c-6.8-1.7-13.9,1.3-17.6,7.2c-5.1-3-11.8-1.4-14.8,3.8
+	c-1,1.7-1.5,3.6-1.5,5.5c0,0.6,0.1,1.2,0.2,1.8c-6.4,1.2-10.5,7.3-9.2,13.6c1.1,5.4,5.8,9.3,11.3,9.4c0.3,0,0.5,0,0.8,0l0,0h43.3
+	c6,0,10.8-4.8,10.8-10.8S67.4,35.8,61.4,35.8z"/>
+</svg>

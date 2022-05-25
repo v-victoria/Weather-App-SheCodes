@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 73.4 78.1" style="enable-background:new 0 0 73.4 78.1;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);stroke:#E6EFFC;stroke-width:0.5;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:url(#SVGID_2_);stroke-miterlimit:10;}
+	.st2{fill:none;stroke:url(#SVGID_3_);stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:url(#SVGID_4_);stroke-miterlimit:10;}
+	.st4{fill:none;stroke:url(#SVGID_5_);stroke-linecap:round;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:url(#SVGID_6_);stroke-miterlimit:10;}
+	.st6{fill:none;stroke:url(#SVGID_7_);stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="22.1954" y1="44.5891" x2="47.8069" y2="0.1998" gradientTransform="matrix(1 0 0 -1 0 66)">
+	<stop  offset="0" style="stop-color:#F3F7FE"/>
+	<stop  offset="0.45" style="stop-color:#F3F7FE"/>
+	<stop  offset="1" style="stop-color:#DEEAFB"/>
+</linearGradient>
+<path class="st0" d="M59,36.1h-0.5c2.1-8.7-3.2-17.4-11.9-19.5c-6.8-1.6-13.9,1.3-17.5,7.2c-5.1-3-11.7-1.3-14.8,3.8
+	c-1,1.7-1.5,3.5-1.5,5.5c0,0.6,0.1,1.2,0.2,1.8C6.7,36,2.6,42.1,3.9,48.3c1.1,5.4,5.8,9.3,11.3,9.3c0.3,0,0.5,0,0.8,0l0,0H59
+	c6,0,10.8-4.8,10.8-10.8S65,36.1,59,36.1z"/>
+<g>
+	
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="33.9342" y1="11.2178" x2="36.3733" y2="7.0048" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<circle class="st1" cx="35.2" cy="56.9" r="1.9"/>
+	
+		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="33.2393" y1="12.4365" x2="37.0682" y2="5.7862" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<path class="st2" d="M38.5,58.8l-1.7-1 M33.5,55.9l-1.7-1 M35.2,53V55 M35.2,60.7v-1.9 M33.5,57.8l-1.7,1 M38.5,55l-1.7,1"/>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" type="translate" values="-1 -6; 1 12">
+		</animateTransform>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" calcMode="linear" dur="9s" fill="remove" repeatCount="indefinite" restart="always" type="rotate" values="0 31 45; 360 31 45">
+		</animateTransform>
+	
+		<animate  accumulate="none" additive="replace" attributeName="opacity" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" values="0;1;1;1;0">
+		</animate>
+</g>
+<g>
+	
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="23.1529" y1="11.2178" x2="25.592" y2="7.0048" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<circle class="st3" cx="24.4" cy="56.9" r="1.9"/>
+	
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="22.458" y1="12.4365" x2="26.2869" y2="5.7862" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<path class="st4" d="M27.7,58.8l-1.7-1 M22.7,55.9L21,55 M24.4,53V55 M24.4,60.7v-1.9 M22.7,57.8l-1.7,1 M27.7,55l-1.7,1"/>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" begin="-2s" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" type="translate" values="1 -6; -1 12">
+		</animateTransform>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" calcMode="linear" dur="9s" fill="remove" repeatCount="indefinite" restart="always" type="rotate" values="0 24 45; 360 24 45">
+		</animateTransform>
+	
+		<animate  accumulate="none" additive="replace" attributeName="opacity" begin="-2s" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" values="0;1;1;1;0">
+		</animate>
+</g>
+<g>
+	
+		<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="44.7155" y1="11.2178" x2="47.1546" y2="7.0048" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<circle class="st5" cx="45.9" cy="56.9" r="1.9"/>
+	
+		<linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="44.0205" y1="12.4365" x2="47.8495" y2="5.7862" gradientTransform="matrix(1 0 0 -1 0 66)">
+		<stop  offset="0" style="stop-color:#86C3DB"/>
+		<stop  offset="0.45" style="stop-color:#86C3DB"/>
+		<stop  offset="1" style="stop-color:#5EAFCF"/>
+	</linearGradient>
+	<path class="st6" d="M49.3,58.8l-1.7-1 M44.3,55.9l-1.7-1 M45.9,53V55 M45.9,60.7v-1.9 M44.3,57.8l-1.7,1 M49.3,55l-1.7,1"/>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" begin="-1s" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" type="translate" values="1 -6; -1 12">
+		</animateTransform>
+	
+		<animateTransform  accumulate="none" additive="sum" attributeName="transform" calcMode="linear" dur="9s" fill="remove" repeatCount="indefinite" restart="always" type="rotate" values="0 38 45; 360 38 45">
+		</animateTransform>
+	
+		<animate  accumulate="none" additive="replace" attributeName="opacity" begin="-1s" calcMode="linear" dur="4s" fill="remove" repeatCount="indefinite" restart="always" values="0;1;1;1;0">
+		</animate>
+</g>
+</svg>

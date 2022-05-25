@@ -81,8 +81,9 @@ span {
   margin: 1vmin;
   font-weight: 600;
 }
-.sky {
+.description {
   margin-left: 2vmin;
+  text-transform: capitalize;
 }
 
 .tempeture {
