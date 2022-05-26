@@ -23,7 +23,7 @@ function addDailyForcastRow() {
 }
 
 function getThemeElem(currentThemeList) {
-  themeElem = {
+  let themeElem = {
     textColorElem: document.querySelectorAll(`.${currentThemeList.textColor}`),
     degreeColorElem: document.querySelectorAll(
       `.${currentThemeList.degreeColor}`
@@ -36,6 +36,8 @@ function getThemeElem(currentThemeList) {
     ),
     borderColorElem: document.querySelector(`.${currentThemeList.borderColor}`),
   };
+
+  return themeElem;
 }
 
 function getCurrentTheme() {
@@ -53,7 +55,7 @@ function getCurrentTheme() {
   }
 }
 
-function updateTheme(updateThemeList, currentThemeList) {
+function updateTheme(themeElem, updateThemeList, currentThemeList) {
   themeElem.textColorElem.forEach((element) => {
     element.classList.remove(currentThemeList.textColor);
     element.classList.add(updateThemeList.textColor);
@@ -83,7 +85,6 @@ function updateTheme(updateThemeList, currentThemeList) {
 function checkColorTheme() {
   let colorThemeList = [
     {
-      themeName: "clear",
       textColor: "text-color-clear",
       degreeColor: "degree-color-clear-hover",
       currentLocationRow: "current-location-row-clear",
@@ -91,7 +92,6 @@ function checkColorTheme() {
       borderColor: "border-color-clear",
     },
     {
-      themeName: "mostly-cloudy",
       textColor: "text-color-mostly-cloudy",
       degreeColor: "degree-color-mostly-cloudy-hover",
       currentLocationRow: "current-location-row-mostly-cloudy",
@@ -99,7 +99,6 @@ function checkColorTheme() {
       borderColor: "border-color-mostly-cloudy",
     },
     {
-      themeName: "cloudy",
       textColor: "text-color-cloudy",
       degreeColor: "degree-color-cloudy-hover",
       currentLocationRow: "current-location-row-cloudy",
@@ -107,7 +106,6 @@ function checkColorTheme() {
       borderColor: "border-color-cloudy",
     },
     {
-      themeName: "night",
       textColor: "text-color-night",
       degreeColor: "degree-color-night-hover",
       currentLocationRow: "current-location-row-night",
@@ -119,17 +117,19 @@ function checkColorTheme() {
   let imgNumber = currentDayData.currentWeatherImgNumber;
   let currentThemeList = colorThemeList[getCurrentTheme()];
 
-  getThemeElem(currentThemeList);
+  let themeElem = getThemeElem(currentThemeList);
 
+  // if true -> set up Clear theme
   if (
     imgNumber === "01d" &&
     themeElem.backgroundColorElem.classList.contains(
       "background-color-clear"
     ) === false
   ) {
-    updateTheme(colorThemeList[0], currentThemeList);
+    updateTheme(themeElem, colorThemeList[0], currentThemeList);
   }
 
+  // if true -> set up Mostly Cloudy theme
   if (
     (imgNumber === "02d" ||
       imgNumber === "04d" ||
@@ -139,9 +139,10 @@ function checkColorTheme() {
       "background-color-mostly-cloudy"
     ) === false
   ) {
-    updateTheme(colorThemeList[1], currentThemeList);
+    updateTheme(themeElem, colorThemeList[1], currentThemeList);
   }
 
+  // if true -> set up Cloudy theme
   if (
     (imgNumber === "03d" ||
       imgNumber === "09d" ||
@@ -151,16 +152,17 @@ function checkColorTheme() {
       "background-color-cloudy"
     ) === false
   ) {
-    updateTheme(colorThemeList[2], currentThemeList);
+    updateTheme(themeElem, colorThemeList[2], currentThemeList);
   }
 
+  // if true -> set up Night theme
   if (
     imgNumber.slice(2) === "n" &&
     themeElem.backgroundColorElem.classList.contains(
       "background-color-night"
     ) === false
   ) {
-    updateTheme(colorThemeList[3], currentThemeList);
+    updateTheme(themeElem, colorThemeList[3], currentThemeList);
   }
 }
 
@@ -251,8 +253,6 @@ function celsiusToFahrenheit(value) {
 }
 
 function switchDegree() {
-  let celsiusElem = document.querySelector("#celsius");
-  let fahrenheitElem = document.querySelector("#fahrenheit");
   let tempClassList = celsiusElem.classList.toString();
 
   celsiusElem.classList = fahrenheitElem.classList;
@@ -375,8 +375,6 @@ function updatePermanentElements() {
 }
 
 function updateChangingElements() {
-  let fahrenheitElem = document.querySelector("#fahrenheit");
-
   if (fahrenheitElem.classList.contains("select-degree")) {
     currentDayDataList.temperatureElem.innerHTML =
       currentDayData.temperatureFahrenheit;
@@ -447,8 +445,6 @@ let currentDayData = {};
 let currentDayDataList = {};
 let dailyForecastList = [];
 let dailyForecastListElem = [];
-
-let themeElem = {};
 
 addDailyForcastRow();
 
