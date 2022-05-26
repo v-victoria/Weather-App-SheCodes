@@ -33,8 +33,10 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="main-background">
-      <div class="line current-location-row">
+    <div
+      class="main-background text-color-mostly-cloudy background-color-mostly-cloudy"
+    >
+      <div class="line current-location-row current-location-row-mostly-cloudy">
         <div class="col-1 current-location-icon">
           <i class="fa-solid fa-location-dot"></i>
         </div>
@@ -49,9 +51,17 @@
           <div class="line current-temperature">
             <div class="col tempeture temp-value">12</div>
             <div class="col degree">
-              <a class="select-degree" id="celsius">℃</a>
+              <a
+                class="select-degree text-color-mostly-cloudy degree-color-mostly-cloudy-hover"
+                id="celsius"
+                >℃</a
+              >
               <hr />
-              <a class="not-select-degree" id="fahrenheit">℉</a>
+              <a
+                class="not-select-degree degree-color-mostly-cloudy-hover"
+                id="fahrenheit"
+                >℉</a
+              >
             </div>
           </div>
         </div>
@@ -85,9 +95,9 @@
             <input
               type="search"
               placeholder="Search City"
-              class="search-input form-control"
+              class="search-input form-control text-color-mostly-cloudy border-color-mostly-cloudy"
             />
-            <button>
+            <button class="text-color-mostly-cloudy">
               <i class="fa-solid fa-magnifying-glass-location"></i>
             </button>
           </form>

@@ -22,9 +22,152 @@ function addDailyForcastRow() {
   }
 }
 
+function getThemeElem(currentThemeList) {
+  themeElem = {
+    textColorElem: document.querySelectorAll(`.${currentThemeList.textColor}`),
+    degreeColorElem: document.querySelectorAll(
+      `.${currentThemeList.degreeColor}`
+    ),
+    currentLocationRowElem: document.querySelector(
+      `.${currentThemeList.currentLocationRow}`
+    ),
+    backgroundColorElem: document.querySelector(
+      `.${currentThemeList.backgroundColor}`
+    ),
+    borderColorElem: document.querySelector(`.${currentThemeList.borderColor}`),
+  };
+}
+
+function getCurrentTheme() {
+  if (document.querySelector(".background-color-clear")) {
+    return 0;
+  }
+  if (document.querySelector(".background-color-mostly-cloudy")) {
+    return 1;
+  }
+  if (document.querySelector(".background-color-cloudy")) {
+    return 2;
+  }
+  if (document.querySelector(".background-color-night")) {
+    return 3;
+  }
+}
+
+function updateTheme(updateThemeList, currentThemeList) {
+  themeElem.textColorElem.forEach((element) => {
+    element.classList.remove(currentThemeList.textColor);
+    element.classList.add(updateThemeList.textColor);
+  });
+
+  themeElem.degreeColorElem.forEach((element) => {
+    element.classList.remove(currentThemeList.degreeColor);
+    element.classList.add(updateThemeList.degreeColor);
+  });
+
+  themeElem.currentLocationRowElem.classList.remove(
+    currentThemeList.currentLocationRow
+  );
+  themeElem.currentLocationRowElem.classList.add(
+    updateThemeList.currentLocationRow
+  );
+
+  themeElem.backgroundColorElem.classList.remove(
+    currentThemeList.backgroundColor
+  );
+  themeElem.backgroundColorElem.classList.add(updateThemeList.backgroundColor);
+
+  themeElem.borderColorElem.classList.remove(currentThemeList.borderColor);
+  themeElem.borderColorElem.classList.add(updateThemeList.borderColor);
+}
+
+function checkColorTheme() {
+  let colorThemeList = [
+    {
+      themeName: "clear",
+      textColor: "text-color-clear",
+      degreeColor: "degree-color-clear-hover",
+      currentLocationRow: "current-location-row-clear",
+      backgroundColor: "background-color-clear",
+      borderColor: "border-color-clear",
+    },
+    {
+      themeName: "mostly-cloudy",
+      textColor: "text-color-mostly-cloudy",
+      degreeColor: "degree-color-mostly-cloudy-hover",
+      currentLocationRow: "current-location-row-mostly-cloudy",
+      backgroundColor: "background-color-mostly-cloudy",
+      borderColor: "border-color-mostly-cloudy",
+    },
+    {
+      themeName: "cloudy",
+      textColor: "text-color-cloudy",
+      degreeColor: "degree-color-cloudy-hover",
+      currentLocationRow: "current-location-row-cloudy",
+      backgroundColor: "background-color-cloudy",
+      borderColor: "border-color-cloudy",
+    },
+    {
+      themeName: "night",
+      textColor: "text-color-night",
+      degreeColor: "degree-color-night-hover",
+      currentLocationRow: "current-location-row-night",
+      backgroundColor: "background-color-night",
+      borderColor: "border-color-night",
+    },
+  ];
+
+  let imgNumber = currentDayData.currentWeatherImgNumber;
+  let currentThemeList = colorThemeList[getCurrentTheme()];
+
+  getThemeElem(currentThemeList);
+
+  if (
+    imgNumber === "01d" &&
+    themeElem.backgroundColorElem.classList.contains(
+      "background-color-clear"
+    ) === false
+  ) {
+    updateTheme(colorThemeList[0], currentThemeList);
+  }
+
+  if (
+    (imgNumber === "02d" ||
+      imgNumber === "04d" ||
+      imgNumber === "10d" ||
+      imgNumber === "50d") &&
+    themeElem.backgroundColorElem.classList.contains(
+      "background-color-mostly-cloudy"
+    ) === false
+  ) {
+    updateTheme(colorThemeList[1], currentThemeList);
+  }
+
+  if (
+    (imgNumber === "03d" ||
+      imgNumber === "09d" ||
+      imgNumber === "11d" ||
+      imgNumber === "13d") &&
+    themeElem.backgroundColorElem.classList.contains(
+      "background-color-cloudy"
+    ) === false
+  ) {
+    updateTheme(colorThemeList[2], currentThemeList);
+  }
+
+  if (
+    imgNumber.slice(2) === "n" &&
+    themeElem.backgroundColorElem.classList.contains(
+      "background-color-night"
+    ) === false
+  ) {
+    updateTheme(colorThemeList[3], currentThemeList);
+  }
+}
+
 function updateCurrentTime(response) {
   let currentTimeElem = document.querySelector(".time");
   let currentLocationDate = new Date();
+
   let minutes = currentLocationDate.getUTCMinutes();
   let hours =
     currentLocationDate.getUTCHours() + response.data.timezone_offset / 3600;
@@ -110,14 +253,11 @@ function celsiusToFahrenheit(value) {
 function switchDegree() {
   let celsiusElem = document.querySelector("#celsius");
   let fahrenheitElem = document.querySelector("#fahrenheit");
+  let tempClassList = celsiusElem.classList.toString();
 
-  if (celsiusElem.className === "select-degree") {
-    celsiusElem.className = "not-select-degree";
-    fahrenheitElem.className = "select-degree";
-  } else {
-    celsiusElem.className = "select-degree";
-    fahrenheitElem.className = "not-select-degree";
-  }
+  celsiusElem.classList = fahrenheitElem.classList;
+  fahrenheitElem.className = tempClassList;
+
   updateChangingElements();
 }
 
@@ -237,7 +377,7 @@ function updatePermanentElements() {
 function updateChangingElements() {
   let fahrenheitElem = document.querySelector("#fahrenheit");
 
-  if (fahrenheitElem.className === "select-degree") {
+  if (fahrenheitElem.classList.contains("select-degree")) {
     currentDayDataList.temperatureElem.innerHTML =
       currentDayData.temperatureFahrenheit;
     currentDayDataList.dayTemperatureElem.innerHTML =
@@ -271,7 +411,6 @@ function updateChangingElements() {
 }
 
 function updateWeather(response) {
-  addDailyForcastRow();
   getCurrentDayDataElem();
   getCurrentDayData(response);
   getDailyForecastListElem();
@@ -281,6 +420,8 @@ function updateWeather(response) {
   updateChangingElements();
 
   updateCurrentTime(response);
+
+  checkColorTheme();
 }
 
 function currentPosition(position) {
@@ -307,10 +448,14 @@ let currentDayDataList = {};
 let dailyForecastList = [];
 let dailyForecastListElem = [];
 
+let themeElem = {};
+
+addDailyForcastRow();
+
 axios.get(apiCallDefault).then(findCity);
 
 citySearchForm.addEventListener("submit", getCityFromSearchForm);
-cityExamplesList.forEach(function (cityExampleElement, index) {
+cityExamplesList.forEach(function (cityExampleElement) {
   cityExampleElement.addEventListener("click", getExampleCity);
 });
 

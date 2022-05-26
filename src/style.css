@@ -4,8 +4,6 @@ button {
   left: 34vmin;
   padding: 0 0 0 0.5vmin;
   font-size: 3em;
-  /* color: #001d6e; */
-  color: #323643;
   background: none;
   border: none;
 }
@@ -21,16 +19,84 @@ span {
   padding: 0 0 0 0.5vmin;
 }
 
+/* Clear Theme */
+.text-color-clear {
+  color: #001d6e;
+}
+.degree-color-clear-hover:hover {
+  color: #001d6e;
+}
+.current-location-row-clear {
+  color: #e4e4e4;
+  background: #001d6e;
+}
+.background-color-clear {
+  background: linear-gradient(to bottom, rgb(30 109 217), rgb(219 233 255));
+}
+.border-color-clear {
+  border: 1px #001d6e solid;
+}
+
+/* Mostly Cloudy Theme */
+.text-color-mostly-cloudy {
+  color: #323643;
+}
+.degree-color-mostly-cloudy-hover:hover {
+  color: #323643;
+}
+.current-location-row-mostly-cloudy {
+  color: #93deff;
+  background: #323643;
+}
+.background-color-mostly-cloudy {
+  background: linear-gradient(180deg, #c9cbcc 0%, #bbdceb 67.19%, #a8d6ea 100%);
+}
+.border-color-mostly-cloudy {
+  border: 1px #323643 solid;
+}
+
+/* Cloudy Theme */
+.text-color-cloudy {
+  color: #323643;
+}
+.degree-color-cloudy-hover:hover {
+  color: #323643;
+}
+.current-location-row-cloudy {
+  color: #e4e4e4;
+  background: #323643;
+}
+.background-color-cloudy {
+  background: linear-gradient(180deg, #606470 0%, #f7f7f7 100%);
+}
+.border-color-cloudy {
+  border: 1px #323643 solid;
+}
+
+/* Night Theme */
+.text-color-night {
+  color: #eeeeee;
+}
+.degree-color-night-hover:hover {
+  color: #eeeeee;
+}
+.current-location-row-night {
+  color: #0f044c;
+  background: #afb0b7;
+}
+.background-color-night {
+  background: linear-gradient(180deg, #141e61 0%, #787a91 100%);
+}
+.border-color-night {
+  border: 1px #eeeeee solid;
+}
+
 .main-background {
   width: 88vmin;
   height: 68vmin;
   margin: 1vmin auto;
   font-size: 0.95vmin;
   font-family: "Source Sans Pro", Tahoma;
-  /* color: #001d6e;
-  background: linear-gradient(to bottom, rgb(30 109 217), rgb(219 233 255)); */
-  color: #323643;
-  background: linear-gradient(180deg, #c9cbcc 0%, #bbdceb 67.19%, #a8d6ea 100%);
   box-shadow: inset 3px 3px 5px 0 rgb(255 255 255 / 25%),
     inset -3px -3px 5px 0 rgb(1 30 111 / 13%), 0 0 8px 1px rgb(1 30 111 / 25%);
   border-radius: 15px;
@@ -50,10 +116,6 @@ span {
 .current-location-row {
   height: 9vmin;
   font-size: 3.7em;
-  /* color: #e4e4e4; */
-  /* background: #001d6e; */
-  color: #93deff;
-  background: #323643;
   border-radius: 15px 15px 0 0;
 }
 
@@ -103,18 +165,10 @@ span {
 }
 .not-select-degree:hover {
   cursor: pointer;
-  /* color: #001d6e; */
-  color: #323643;
 }
 
 .select-degree {
-  /* color: #001d6e; */
-  color: #323643;
   text-decoration: none;
-}
-.select-degree:hover {
-  /* color: #001d6e; */
-  color: #323643;
 }
 
 .current-weather-details-top {
@@ -180,11 +234,7 @@ span {
   padding: 0 6vmin 0 3vmin;
   font-size: 2.6em;
   text-align: center;
-  /* color: #001d6e; */
-  color: #323643;
   background: rgba(255, 255, 255, 0.6);
-  /* border: 1px #001d6e solid; */
-  border: 1px #323643 solid;
   border-radius: 3vmin;
 }
 
