@@ -181,7 +181,17 @@ function updateCurrentTime(response) {
     hours = hours - 24;
   }
 
-  if (hours < 10) {
+  // Time adjustment if the time zone is not integer
+  if (Number.isInteger(hours) === false) {
+    minutes = minutes + 30;
+    if (minutes > 60) {
+      minutes = minutes - 60;
+      hours = hours + 1;
+    }
+    hours = hours.toString().slice(0, -2);
+  }
+
+  if (hours.length === 1 || hours < 10) {
     hours = `0${hours}`;
   }
 
