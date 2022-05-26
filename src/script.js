@@ -1,3 +1,27 @@
+function addDailyForcastRow() {
+  let daylyForecastRowElem = document.querySelector(".dayly-forecast-row");
+  for (let i = 0; i < 5; i++) {
+    daylyForecastRowElem.innerHTML =
+      daylyForecastRowElem.innerHTML +
+      `<div class="col">
+          <div class="line week-day" id="week-day-${i}"></div>
+          <div class="line week-temperature">
+            <span class="temp-value" id="daily-day-temp-${i}"></span>° /
+            <span class="temp-value" id="daily-night-temp-${i}"></span>°
+          </div>
+          <div class="line">
+            <img
+              src="svg/01d.svg"
+              alt=""
+              class="week-weather-img"
+              id="week-weather-img-${i}"
+            />
+          </div>
+        </div>
+        `;
+  }
+}
+
 function updateCurrentTime(response) {
   let currentTimeElem = document.querySelector(".time");
   let currentLocationDate = new Date();
@@ -247,6 +271,7 @@ function updateChangingElements() {
 }
 
 function updateWeather(response) {
+  addDailyForcastRow();
   getCurrentDayDataElem();
   getCurrentDayData(response);
   getDailyForecastListElem();
