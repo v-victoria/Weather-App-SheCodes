@@ -262,13 +262,15 @@ function celsiusToFahrenheit(value) {
   return (value * 9) / 5 + 32;
 }
 
-function switchDegree() {
-  let tempClassList = celsiusElem.classList.toString();
+function switchDegree(event) {
+  if (event.target.classList.contains("not-select-degree")) {
+    let tempClassList = celsiusElem.classList.toString();
 
-  celsiusElem.classList = fahrenheitElem.classList;
-  fahrenheitElem.className = tempClassList;
+    celsiusElem.classList = fahrenheitElem.classList;
+    fahrenheitElem.className = tempClassList;
 
-  updateChangingElements();
+    updateChangingElements();
+  }
 }
 
 function windLenghtCheck(wind) {
