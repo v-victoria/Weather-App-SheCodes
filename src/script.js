@@ -1,4 +1,5 @@
-function currentTime(response) {
+function updateCurrentTime(response) {
+  let currentTimeElem = document.querySelector(".time");
   let currentLocationDate = new Date();
   let minutes = currentLocationDate.getUTCMinutes();
   let hours =
@@ -19,9 +20,7 @@ function currentTime(response) {
     minutes = `0${minutes}`;
   }
 
-  let returnString = `${hours}:${minutes}`;
-
-  return returnString;
+  currentTimeElem.innerHTML = `${hours}:${minutes}`;
 }
 
 function displayCity(response) {
@@ -62,7 +61,7 @@ function GetCoordinatesByLocationName(city) {
   axios.get(apiCallGetCoordinatesByLocationName).then(findCity);
 }
 
-function getCity(event) {
+function getCityFromSearchForm(event) {
   event.preventDefault();
 
   let citySearchStringForm = document.querySelector(".search-input");
@@ -84,7 +83,7 @@ function celsiusToFahrenheit(value) {
   return (value * 9) / 5 + 32;
 }
 
-function switchClasses() {
+function switchDegree() {
   let celsiusElem = document.querySelector("#celsius");
   let fahrenheitElem = document.querySelector("#fahrenheit");
 
@@ -114,13 +113,13 @@ function getCurrentDayData(response) {
       celsiusToFahrenheit(response.data.current.temp)
     ),
     description: response.data.current.weather[0].description,
-    dayTemperatureCelsius: Math.round(response.data.daily[0].temp.day),
+    dayTemperatureCelsius: Math.round(response.data.daily[0].temp.max),
     dayTemperatureFahrenheit: Math.round(
-      celsiusToFahrenheit(response.data.daily[0].temp.day)
+      celsiusToFahrenheit(response.data.daily[0].temp.max)
     ),
-    nightTemperatureCelsius: Math.round(response.data.daily[0].temp.night),
+    nightTemperatureCelsius: Math.round(response.data.daily[0].temp.min),
     nightTemperatureFahrenheit: Math.round(
-      celsiusToFahrenheit(response.data.daily[0].temp.night)
+      celsiusToFahrenheit(response.data.daily[0].temp.min)
     ),
     humidity: Math.round(response.data.current.humidity),
     windMetric: `${windLenghtCheck(
@@ -133,7 +132,7 @@ function getCurrentDayData(response) {
   };
 }
 
-function getCurrentDayDataList() {
+function getCurrentDayDataElem() {
   currentDayDataList = {
     temperatureElem: document.querySelector(".tempeture"),
     descriptionElem: document.querySelector(".description"),
@@ -169,13 +168,13 @@ function getDailyForecastList(response) {
 
     dailyForecastList[i] = {
       date: `${weekDays[dayOfWeek.getDay()]} ${date}`,
-      dayTempCelsius: Math.round(response.data.daily[i + 1].temp.day),
+      dayTempCelsius: Math.round(response.data.daily[i + 1].temp.max),
       dayTempFahrenheit: Math.round(
-        celsiusToFahrenheit(response.data.daily[i + 1].temp.day)
+        celsiusToFahrenheit(response.data.daily[i + 1].temp.max)
       ),
-      nightTempCelsius: Math.round(response.data.daily[i + 1].temp.night),
+      nightTempCelsius: Math.round(response.data.daily[i + 1].temp.min),
       nightTempFahrenheit: Math.round(
-        celsiusToFahrenheit(response.data.daily[i + 1].temp.night)
+        celsiusToFahrenheit(response.data.daily[i + 1].temp.min)
       ),
       description: response.data.daily[i + 1].weather[0].icon,
     };
@@ -248,8 +247,7 @@ function updateChangingElements() {
 }
 
 function updateWeather(response) {
-  let currentTimeElem = document.querySelector(".time");
-  getCurrentDayDataList();
+  getCurrentDayDataElem();
   getCurrentDayData(response);
   getDailyForecastListElem();
   getDailyForecastList(response);
@@ -257,7 +255,7 @@ function updateWeather(response) {
   updatePermanentElements();
   updateChangingElements();
 
-  currentTimeElem.innerHTML = currentTime(response);
+  updateCurrentTime(response);
 }
 
 function currentPosition(position) {
@@ -286,13 +284,13 @@ let dailyForecastListElem = [];
 
 axios.get(apiCallDefault).then(findCity);
 
-citySearchForm.addEventListener("submit", getCity);
+citySearchForm.addEventListener("submit", getCityFromSearchForm);
 cityExamplesList.forEach(function (cityExampleElement, index) {
   cityExampleElement.addEventListener("click", getExampleCity);
 });
 
-celsiusElem.addEventListener("click", switchClasses);
-fahrenheitElem.addEventListener("click", switchClasses);
+celsiusElem.addEventListener("click", switchDegree);
+fahrenheitElem.addEventListener("click", switchDegree);
 
 navigator.geolocation.getCurrentPosition(currentPosition);
 
