@@ -177,14 +177,14 @@ function updateCurrentTime(response) {
   if (hours < 0) {
     hours = 24 + hours;
   }
-  if (hours > 24) {
+  if (hours >= 24) {
     hours = hours - 24;
   }
 
   // Time adjustment if the time zone is not integer
   if (Number.isInteger(hours) === false) {
     minutes = minutes + 30;
-    if (minutes > 60) {
+    if (minutes >= 60) {
       minutes = minutes - 60;
       hours = hours + 1;
     }
