@@ -312,9 +312,9 @@ function getCurrentDayDataElem() {
   currentDayDataList = {
     temperatureElem: document.querySelector(".tempeture"),
     descriptionElem: document.querySelector(".description"),
-    dayTemperatureElem: document.querySelector(".day-temp"),
-    nightTemperatureElem: document.querySelector(".night-temp"),
-    humidityElem: document.querySelector(".humidity"),
+    dayTemperatureElem: document.querySelector("#day-temp"),
+    nightTemperatureElem: document.querySelector("#night-temp"),
+    humidityElem: document.querySelector("#humidity"),
     windElem: document.querySelector("#wind"),
     currentWeatherImgElem: document.querySelector(".current-weather-img"),
   };
@@ -329,7 +329,7 @@ function getDailyForecastList(response) {
   if (hours < 0) {
     dayOfWeek = new Date(dayOfWeek.setDate(dayOfWeek.getDate() - 1));
   }
-  if (hours > 24) {
+  if (hours >= 24) {
     dayOfWeek = new Date(dayOfWeek.setDate(dayOfWeek.getDate() + 1));
   }
 
